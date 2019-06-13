@@ -1,0 +1,2 @@
+# BankAPI
+Example Model CQRS
