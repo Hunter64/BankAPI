@@ -4,10 +4,11 @@ use Mix.Config
 config :bank_api, BankAPI.Repo,
   username: "postgres",
   password: "postgres",
-  database: "bank_api_dev",
+  database: "postgres",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  port: 4000
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -16,7 +17,7 @@ config :bank_api, BankAPI.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :bank_api, BankAPIWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 4002],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -55,3 +56,18 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+#Configure database for use Eventstore
+config :eventstore,
+  column_data_type: "jsonb"
+
+config :eventstore, EventStore.Storage,
+  serializer: EventStore.JsonbSerializer,
+  types: EventStore.PostgresTypes,
+  username: "postgres",
+  password: "postgres",
+  database: "postgres_eventstore",
+  hostname: "localhost",
+  pool_size: 10,
+  pool_overflow: 5,
+  port: 4000
