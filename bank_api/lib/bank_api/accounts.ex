@@ -9,7 +9,7 @@ defmodule BankAPI.Accounts do
     alias BankAPI.Repo
     alias BankAPI.Router
     alias BankAPI.Accounts.Commands.OpenAccount
-    alias BankAPI.Accounts.Projections.Accounts
+    alias BankAPI.Accounts.Projections.Account
 
     def get_account(uuid) do
         Repo.get!(Account, uuid)

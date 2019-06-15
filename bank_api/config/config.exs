@@ -34,3 +34,5 @@ import_config "#{Mix.env()}.exs"
 config :commanded,
   event_store_adapter: Commanded.EventStore.Adapters.EventStore
 
+config :commanded_ecto_projections,
+  repo: BankAPI.Repo
